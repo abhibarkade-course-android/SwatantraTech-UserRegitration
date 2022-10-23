@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:swatantratech/screens/home/home.dart';
 
 import '../widgets/dialogs.dart';
 
@@ -9,7 +11,17 @@ class SignInHelper {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password)
-          .whenComplete(() => print("User Logged In "));
+          .whenComplete(() {
+        if (FirebaseAuth.instance.currentUser != null) {
+          showToast('Login Successful',
+              position: ToastPosition.bottom, backgroundColor: Colors.black54);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (ctx) => Home()), (route) => false);
+        } else {
+          showToast('',
+              position: ToastPosition.bottom, backgroundColor: Colors.black54);
+        }
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         CustomDialogs.showErrorDialogWithButtons(

@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:swatantratech/screens/auth/sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:swatantratech/screens/auth/sign_in.dart';
+import 'package:swatantratech/screens/home/home.dart';
 
 import 'firebase_options.dart';
 
@@ -15,13 +18,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return OKToast(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: FirebaseAuth.instance.currentUser == null ? SignIn() : Home(),
       ),
-      home: SignIn(),
     );
   }
 }
