@@ -22,7 +22,7 @@ class CustomDialogs {
         'assets/lottie/$lottie.json',
         fit: BoxFit.contain,
       ),
-      dialogWidth: kIsWeb ? 0.3 : null,
+      dialogWidth: 0.3,
       context: context,
       actions: [
         IconsButton(

@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:swatantratech/screens/auth/sign_in.dart';
 import 'package:swatantratech/widgets/dialogs.dart';
+
+import '../../utilities/dimensions.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -86,25 +86,26 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(48),
+          constraints: BoxConstraints(maxWidth: Dimensions.w360),
+          margin: EdgeInsets.all(Dimensions.h48),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Hey there',
-                style: TextStyle(fontSize: 32),
+                style: TextStyle(fontSize: Dimensions.h30),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: Dimensions.h8),
               Text("To get started with us create you account"),
-              SizedBox(height: 30),
+              SizedBox(height: Dimensions.h30),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 maxLines: 1,
                 controller: _emailController,
                 decoration: InputDecoration(hintText: 'Email'),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: Dimensions.h16),
               TextField(
                 maxLines: 1,
                 controller: _passwordController,
@@ -122,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: Dimensions.h16),
               TextField(
                 obscureText: !_showPassword,
                 maxLines: 1,
@@ -131,10 +132,10 @@ class _SignUpState extends State<SignUp> {
                   labelText: 'Confirm Password',
                 ),
               ),
-              SizedBox(height: 48),
+              SizedBox(height: Dimensions.h48),
               Container(
                 width: double.maxFinite,
-                height: 42,
+                height: Dimensions.h42,
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.black),
@@ -143,20 +144,21 @@ class _SignUpState extends State<SignUp> {
                   child: const Text('Create Account'),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: Dimensions.h20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "Already have an account?",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: Dimensions.f12),
                   ),
-                  SizedBox(width: 8),
+                  SizedBox(width: Dimensions.h8),
                   InkWell(
-                    child: const Text(
+                    child: Text(
                       "Sign in",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: Dimensions.f12,
+                          fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
                       setState(() {
