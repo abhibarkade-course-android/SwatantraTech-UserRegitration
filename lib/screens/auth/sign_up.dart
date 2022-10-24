@@ -4,6 +4,7 @@ import 'package:swatantratech/screens/auth/sign_in.dart';
 import 'package:swatantratech/widgets/dialogs.dart';
 
 import '../../utilities/dimensions.dart';
+import '../home/home.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -22,12 +23,12 @@ class _SignUpState extends State<SignUp> {
   userAddedSuccess() async {
     CustomDialogs.showErrorDialog(
         context,
-        "Confirmation mail has been send to\n${_emailController.text}. Please verify you email",
+        "Continue to explore more",
         'User Added',
         'Continue',
         'success_anim',
-        false,
-        null);
+        true,
+        MaterialPageRoute(builder: (ctx) => const Home()));
   }
 
   // Validates Inputs
@@ -48,12 +49,14 @@ class _SignUpState extends State<SignUp> {
           null);
     } else {
       try {
-        await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-              email: _emailController.text,
-              password: _passwordController.text,
-            )
-            .whenComplete(() => {userAddedSuccess()});
+        var user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        ))
+            .user;
+        if (user != null) {
+          userAddedSuccess();
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           CustomDialogs.showErrorDialog(

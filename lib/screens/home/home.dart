@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:swatantratech/screens/auth/sign_in.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,20 +14,23 @@ class _HomeState extends State<Home> {
   // Menu Items - actions
   popUpMenuItems() {
     return PopupMenuButton(
-      icon: Icon(Icons.more_vert),
+      icon: const Icon(Icons.more_vert),
+      onSelected: (res) {
+        if (res == 0) {
+          FirebaseAuth.instance.signOut();
+          showToast('User Logged Out',
+              position: ToastPosition.bottom, backgroundColor: Colors.black54);
+
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => SignIn()),
+              (Route<dynamic> route) => false);
+        }
+      },
       itemBuilder: (ctx) {
         return [
-          PopupMenuItem<int>(
+          const PopupMenuItem<int>(
             value: 0,
-            child: const Text("Logout"),
-            onTap: () {
-              setState(() {
-                FirebaseAuth.instance.signOut();
-                showToast('User Logged Out',
-                    position: ToastPosition.bottom,
-                    backgroundColor: Colors.black54);
-              });
-            },
+            child: Text("Logout"),
           ),
         ];
       },
