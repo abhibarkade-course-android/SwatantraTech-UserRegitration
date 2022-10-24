@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:swatantratech/screens/auth/sign_in.dart';
-import 'package:swatantratech/screens/home/home.dart';
+import 'package:swatantratech/screens/home/add_user_data.dart';
 
 import 'firebase_options.dart';
 
@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: FirebaseAuth.instance.currentUser == null ? SignIn() : Home(),
+        home: FirebaseAuth.instance.currentUser == null
+            ? AddUserData()
+            : AddUserData(),
       ),
     );
   }
