@@ -30,7 +30,19 @@ class PreviewDialog {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.file(File(userDetails.url)),
+              Center(
+                child: SizedBox(
+                  width: Dimensions.h120,
+                  height: Dimensions.h120,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(Dimensions.r150),
+                    child: Image.file(
+                      File(userDetails.url),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: Dimensions.h8),
               Text(
                 'Name : ${userDetails.name}',
                 style: TextStyle(fontSize: 16),

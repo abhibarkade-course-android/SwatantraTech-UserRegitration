@@ -126,13 +126,15 @@ class _AddUserDataState extends State<AddUserData> {
                     height: Dimensions.r150,
                     width: Dimensions.r150,
                     child: _image == null
-                        ? CircleAvatar(
-                            backgroundColor: Colors.black54,
-                            radius: Dimensions.r150 / 2,
-                            child: const Text('No Image Selected'))
-                        : CircleAvatar(
-                            backgroundColor: Colors.black54,
-                            radius: Dimensions.r150 / 2,
+                        ? ClipRRect(
+                            child: CircleAvatar(
+                                backgroundColor: Colors.black54,
+                                radius: Dimensions.r150 / 2,
+                                child: const Text('No Image Selected')),
+                          )
+                        : ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.r150 / 2),
                             child: Image.file(_image!),
                           ),
                   ),
