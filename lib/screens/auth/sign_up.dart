@@ -4,7 +4,6 @@ import 'package:swatantratech/screens/auth/sign_in.dart';
 import 'package:swatantratech/widgets/dialogs.dart';
 
 import '../../utilities/dimensions.dart';
-import '../home/home.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -23,12 +22,12 @@ class _SignUpState extends State<SignUp> {
   userAddedSuccess() async {
     CustomDialogs.showErrorDialog(
         context,
-        "Continue to explore more",
+        "You can now log in with your account",
         'User Added',
         'Continue',
         'success_anim',
         true,
-        MaterialPageRoute(builder: (ctx) => const Home()));
+        MaterialPageRoute(builder: (ctx) => const SignIn()));
   }
 
   // Validates Inputs
@@ -55,6 +54,7 @@ class _SignUpState extends State<SignUp> {
         ))
             .user;
         if (user != null) {
+          FirebaseAuth.instance.signOut();
           userAddedSuccess();
         }
       } on FirebaseAuthException catch (e) {
