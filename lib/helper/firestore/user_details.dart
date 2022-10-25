@@ -19,7 +19,7 @@ class UserDetails {
   final String gender;
   final String name;
   final String pinCode;
-  final String url;
+  String url;
 
   Map<String, Object?> toJson() {
     return {

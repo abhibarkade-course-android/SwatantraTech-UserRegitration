@@ -7,9 +7,9 @@ import 'package:gender_picker/source/gender_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:swatantratech/helper/firebase/user_details.dart';
 import 'package:swatantratech/widgets/preview_dialog.dart';
 
+import '../../helper/firestore/user_details.dart';
 import '../../utilities/dimensions.dart';
 import '../../widgets/dialogs.dart';
 
@@ -200,13 +200,13 @@ class _AddUserDataState extends State<AddUserData> {
               GenderPickerWithImage(
                 showOtherGender: true,
                 verticalAlignedText: false,
-                selectedGender: Gender.Male,
+                selectedGender: _gender,
                 selectedGenderTextStyle: const TextStyle(
                     color: Color(0xFF8b32a8), fontWeight: FontWeight.bold),
                 unSelectedGenderTextStyle: const TextStyle(
                     color: Colors.white, fontWeight: FontWeight.normal),
                 onChanged: (Gender? gender) {
-                  _gender = _gender;
+                  _gender = gender!;
                 },
                 equallyAligned: true,
                 animationDuration: Duration(milliseconds: 300),
@@ -226,7 +226,7 @@ class _AddUserDataState extends State<AddUserData> {
   showPreview() {
     if (_nameController.text.isNotEmpty &&
         bod.isNotEmpty &&
-        _pinCodeController.text.isNotEmpty) {
+        _pinCodeController.text.isNotEmpty && _image!=null) {
       PreviewDialog.showErrorDialogWithButtons(
           context,
           UserDetails(

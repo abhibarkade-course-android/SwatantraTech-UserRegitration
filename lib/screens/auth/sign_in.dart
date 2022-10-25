@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:swatantratech/helper/sign_in_helper.dart';
+import 'package:swatantratech/helper/auth/sign_in_helper.dart';
 import 'package:swatantratech/screens/auth/sign_up.dart';
 import 'package:swatantratech/utilities/dimensions.dart';
 import 'package:swatantratech/widgets/reset_password.dart';

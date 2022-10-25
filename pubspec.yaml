@@ -21,11 +21,12 @@ dependencies:
   oktoast: ^3.3.1
   gender_picker: ^1.1.0
   date_time_picker: ^2.1.0
-  country_calling_code_picker: ^2.0.1
   image_picker: ^0.8.6
   modal_bottom_sheet: ^2.1.2
   cloud_firestore: ^4.0.2
   image_cropper: ^3.0.0
+  firebase_storage: ^11.0.2
+  simple_fontellico_progress_dialog: ^0.2.1
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/dialogs.dart';
+import '../../widgets/dialogs.dart';
 
 class ResetPasswordHelper {
   static resetPassword(BuildContext context, String email, String newPass,

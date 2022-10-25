@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
-import 'package:swatantratech/helper/reset_password_helper.dart';
+import 'package:swatantratech/helper/auth/reset_password_helper.dart';
 
 import 'dialogs.dart';
 

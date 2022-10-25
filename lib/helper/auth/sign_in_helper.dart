@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:swatantratech/screens/home/home.dart';
 
-import '../widgets/dialogs.dart';
+import '../../widgets/dialogs.dart';
 
 class SignInHelper {
   static signIn(BuildContext context, String email, String password) async {

@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
+        onPressed: () async {
           Navigator.push(
               context, MaterialPageRoute(builder: (ctx) => AddUserData()));
         },

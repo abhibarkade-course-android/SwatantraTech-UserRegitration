@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:swatantratech/screens/auth/sign_in.dart';
 import 'package:swatantratech/widgets/dialogs.dart';
 
@@ -47,39 +48,51 @@ class _SignUpState extends State<SignUp> {
           false,
           null);
     } else {
-      try {
-        var user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
-        ))
-            .user;
-        if (user != null) {
-          FirebaseAuth.instance.signOut();
-          userAddedSuccess();
+      if (GetUtils.isEmail(_emailController.text)) {
+        try {
+          var user =
+              (await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: _emailController.text,
+            password: _passwordController.text,
+          ))
+                  .user;
+          if (user != null) {
+            FirebaseAuth.instance.signOut();
+            userAddedSuccess();
+          }
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'weak-password') {
+            CustomDialogs.showErrorDialog(
+                context,
+                'The password provided is too weak',
+                'Invalid Password',
+                'Try Again',
+                'invalid_anim',
+                false,
+                null);
+          } else if (e.code == 'email-already-in-use') {
+            CustomDialogs.showErrorDialog(
+                context,
+                'Try to Log In with same credentials',
+                'Existing Account !!',
+                'Continue',
+                'invalid_anim',
+                true,
+                MaterialPageRoute(builder: (ctx) => SignIn()));
+          }
+        } catch (e) {
+          CustomDialogs.showErrorDialog(context, e.toString(), 'ERROR',
+              'Continue', 'invalid_anim', false, null);
         }
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          CustomDialogs.showErrorDialog(
-              context,
-              'The password provided is too weak',
-              'Invalid Password',
-              'Try Again',
-              'invalid_anim',
-              false,
-              null);
-        } else if (e.code == 'email-already-in-use') {
-          CustomDialogs.showErrorDialog(
-              context,
-              'Try to Log In with same credentials',
-              'Existing Account !!',
-              'Continue',
-              'invalid_anim',
-              true,
-              MaterialPageRoute(builder: (ctx) => SignIn()));
-        }
-      } catch (e) {
-        CustomDialogs.showErrorDialog(context, e.toString(), 'ERROR',
-            'Continue', 'invalid_anim', false, null);
+      } else {
+        CustomDialogs.showErrorDialog(
+            context,
+            "Please enter a valid email \n For example, abc@gmail.com",
+            'Invalid Email',
+            'Continue',
+            'invalid_anim',
+            false,
+            null);
       }
     }
   }
