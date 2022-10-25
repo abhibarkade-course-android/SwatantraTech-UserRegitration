@@ -11,6 +11,7 @@ class Dimensions {
   static double h30 = screenHeight / 28;
   static double h42 = screenHeight / 20;
   static double h48 = screenHeight / 17.5;
+  static double h60 = screenHeight / 14;
   static double h120 = screenHeight / 7;
 
   // Width

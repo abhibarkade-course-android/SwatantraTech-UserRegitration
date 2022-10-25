@@ -126,6 +126,7 @@ class PreviewDialog {
 
           String url = (await tmp.getDownloadURL()).toString();
           userDetails.url = (await tmp.getDownloadURL()).toString();
+          userDetails.createdAt = fileName.split('-')[1];
           print(url);
 
           AddUsersDetails.addUser(context, userDetails, fileName);

@@ -166,7 +166,7 @@ class _AddUserDataState extends State<AddUserData> {
               // Birth Date
               DateTimePicker(
                 initialValue: '',
-                firstDate: DateTime(2000),
+                firstDate: DateTime(1950),
                 lastDate: DateTime(2100),
                 dateLabelText: 'Date',
                 onChanged: (val) => bod = val,
@@ -214,7 +214,7 @@ class _AddUserDataState extends State<AddUserData> {
                 // default : true,
                 opacityOfGradient: 0.4,
                 padding: const EdgeInsets.all(3),
-                size: 50, //default : 40
+                size: Dimensions.h48,
               ),
             ],
           ),
@@ -226,7 +226,8 @@ class _AddUserDataState extends State<AddUserData> {
   showPreview() {
     if (_nameController.text.isNotEmpty &&
         bod.isNotEmpty &&
-        _pinCodeController.text.isNotEmpty && _image!=null) {
+        _pinCodeController.text.isNotEmpty &&
+        _image != null) {
       PreviewDialog.showErrorDialogWithButtons(
           context,
           UserDetails(
@@ -234,7 +235,8 @@ class _AddUserDataState extends State<AddUserData> {
               gender: _gender.name,
               bod: bod,
               pinCode: _pinCodeController.text,
-              url: _image!.path),
+              url: _image!.path,
+              createdAt: ''),
           'If something wrong, you can still make changes by simply editing it.',
           'buttonText',
           'Edit',
