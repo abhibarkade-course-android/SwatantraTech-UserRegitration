@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserDetails {
   final String bod;
   final String gender;
@@ -33,5 +35,20 @@ class UserDetails {
       'url': url,
       'createdAt': createdAt
     };
+  }
+
+  static toUserDetails(DocumentSnapshot snap) {
+    return UserDetails(
+        name: snap.get('name'),
+        gender: snap.get('gender'),
+        bod: snap.get('bod'),
+        pinCode: snap.get('pinCode'),
+        url: snap.get('url'),
+        createdAt: snap.get('createdAt'));
+  }
+
+  @override
+  String toString() {
+    return 'UserDetails{bod: $bod, gender: $gender, name: $name, pinCode: $pinCode, url: $url, createdAt: $createdAt}';
   }
 }

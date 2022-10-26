@@ -28,7 +28,6 @@ dependencies:
   firebase_storage: ^11.0.2
   simple_fontellico_progress_dialog: ^0.2.1
   cached_network_image: ^3.2.2
-  filter_list: ^1.0.2
 
 dev_dependencies:
   flutter_test:
