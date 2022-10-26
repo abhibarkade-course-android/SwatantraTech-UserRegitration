@@ -59,7 +59,9 @@ class _HomeState extends State<Home> {
               setState(() {
                 AppConstants.currentFilter = 'name';
                 AppConstants.sortAZ = !AppConstants.sortAZ;
-                print(AppConstants.sortAZ);
+                AppConstants.sortAZ
+                    ? showToast('Sorting Z-A', position: ToastPosition.bottom)
+                    : showToast('Sorting A-Z', position: ToastPosition.bottom);
               });
             },
           ),
@@ -69,7 +71,11 @@ class _HomeState extends State<Home> {
               setState(() {
                 AppConstants.currentFilter = 'createdAt';
                 AppConstants.sortByCreation = !AppConstants.sortByCreation;
-                print(AppConstants.sortByCreation);
+                AppConstants.sortByCreation
+                    ? showToast('Sorting by Creation time DSC',
+                        position: ToastPosition.bottom)
+                    : showToast('Sorting by Creation time ASC',
+                        position: ToastPosition.bottom);
               });
             },
           ),
@@ -129,13 +135,13 @@ class _HomeState extends State<Home> {
                                     horizontal: Dimensions.h16),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(12)),
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(Dimensions.h12)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.shade100,
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
+                                      spreadRadius: Dimensions.h5,
+                                      blurRadius: Dimensions.h7,
                                       offset: Offset(
                                           0, 3), // changes position of shadow
                                     ),
@@ -168,19 +174,23 @@ class _HomeState extends State<Home> {
                                         children: [
                                           Text(
                                             'Name : ${snap.get('name')}',
-                                            style: TextStyle(fontSize: 16),
+                                            style: TextStyle(
+                                                fontSize: Dimensions.h16),
                                           ),
                                           Text(
                                             'Date of Birth : ${snap.get('bod')}',
-                                            style: TextStyle(fontSize: 16),
+                                            style: TextStyle(
+                                                fontSize: Dimensions.h16),
                                           ),
                                           Text(
                                             'Gender : ${snap.get('gender')}',
-                                            style: TextStyle(fontSize: 16),
+                                            style: TextStyle(
+                                                fontSize: Dimensions.h16),
                                           ),
                                           Text(
                                             'Pincode : ${snap.get('pinCode')}',
-                                            style: TextStyle(fontSize: 16),
+                                            style: TextStyle(
+                                                fontSize: Dimensions.h16),
                                           ),
                                         ],
                                       ),

@@ -5,7 +5,10 @@ class Dimensions {
   static double screenWidth = Get.width;
 
   // Height
+  static double h5 = screenHeight / 168;
+  static double h7 = screenHeight / 120;
   static double h8 = screenHeight / 105;
+  static double h12 = screenHeight / 70;
   static double h16 = screenHeight / 52.5;
   static double h20 = screenHeight / 42;
   static double h30 = screenHeight / 28;
