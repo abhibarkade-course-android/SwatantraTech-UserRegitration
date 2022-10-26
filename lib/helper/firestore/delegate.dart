@@ -37,10 +37,7 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     List<UserDetails> matchQuery = [];
     for (var user in searchTerms) {
-      if (user.name.toLowerCase().contains(query.toLowerCase()) ||
-          user.bod.toLowerCase().contains(query.toLowerCase()) ||
-          user.gender.toLowerCase().contains(query.toLowerCase()) ||
-          user.pinCode.toLowerCase().contains(query.toLowerCase())) {
+      if (user.name.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(user);
       }
     }
